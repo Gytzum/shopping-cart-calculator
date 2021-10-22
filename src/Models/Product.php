@@ -3,9 +3,6 @@ namespace Models;
 use Models\Currency;
 
 class Product extends Currency{
-    public $identifier;
-    public $name;
-    public $quantity;
   
     public function __construct($line){
         $this->line = $line;
@@ -17,6 +14,7 @@ class Product extends Currency{
         return $row;
     }
 
+    //MAKE ASSOSIATIVE ARRAY FROM STRING
     private function setData(){
         $values = explode(';', $this->line);
         $formatedRow =  array(

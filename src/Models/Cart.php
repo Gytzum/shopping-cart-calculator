@@ -3,16 +3,15 @@ namespace Models;
 use \Exception as Exception;
 class Cart{
         private $cart = array();
-        public $total = 0;
 
         public function __construct(){
             $this->cart;
-            $this->total;
         }
         public function totalCart($product){
             $this->isProductInCart($product['id'], $this->cart);
             $this->checkQuantity($product);
         }
+        //CHECK QUANTITY OF PRODUCT
         public function checkQuantity($product){
             if($product['quantity'] > 0){
                 $this->addToCart($product);
@@ -21,6 +20,7 @@ class Cart{
                 throw new Exception('You can add or remove products only!');
             }
         }
+        //CHECK IF PRODUCT IN CART AND REMOVE IF IT IS
         public function isProductInCart($id, $products){
             foreach($products as $key => $product){
                 if($products[$key]['id'] == $id){
@@ -38,7 +38,6 @@ class Cart{
         }
 
         public function printResult(){
-            
             $cart = $this->cart;
             $total = 0;
             echo "\nPRODUCTS IN CART\n \n";

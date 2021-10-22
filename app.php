@@ -15,11 +15,10 @@ class App{
         //ITERATE EACH ROW 
         foreach($rows as $row){
             $product = new Product($row);
-            $line = $product->calculate();
-            $total = $cart->totalCart($line);
+            $line = $product->calculate(); //calculate to default currency
+            $cart->totalCart($line);
         }   
-
-        print_r($cart->printResult());
+        print_r($cart->printResult()); //print result
     }
 }
 
