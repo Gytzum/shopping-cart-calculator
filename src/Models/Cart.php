@@ -1,5 +1,6 @@
 <?php
 namespace Models;
+use \Exception as Exception;
 class Cart{
         private $cart = array();
         public $total = 0;
@@ -10,11 +11,14 @@ class Cart{
         }
         public function totalCart($product){
             $this->isProductInCart($product['id'], $this->cart);
-            $this->updateCart($product);
+            $this->checkQuantity($product);
         }
-        public function updateCart($product){
+        public function checkQuantity($product){
             if($product['quantity'] > 0){
                 $this->addToCart($product);
+            }  
+            if($product['quantity'] == 0){
+                throw new Exception('You can add or remove products only!');
             }
         }
         public function isProductInCart($id, $products){
@@ -24,7 +28,7 @@ class Cart{
                 }
             }
         }
-        
+
         private function addToCart($product){
             array_push($this->cart, $product);
         }
